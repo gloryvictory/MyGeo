@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .forms import UploadForm
-from .models import UploadFile
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 import time
@@ -23,6 +22,8 @@ def upload_file(request):
             default_storage.save('tmp/' + filename, ContentFile(data.read()))
             with open('tmp/' + filename, 'r+', encoding='utf-8') as f:
                 reader = csv.reader(f, dialect='myCSV')
+                for row in reader:
+                    pass
             f.close()
             return render(request, 'upload_success.html', {})
     else:
