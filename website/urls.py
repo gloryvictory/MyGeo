@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/',  admin.site.urls),
     path('upload/', include('upload.urls')),
     path('comp_list_view/', include('compdata.urls')),
+    path('shpviewlist/', include('shpviewlist.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

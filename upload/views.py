@@ -6,6 +6,7 @@ from django.core.files.storage import default_storage
 import time
 import csv
 import os
+from pathlib import Path
 
 
 csv.register_dialect('myCSV', delimiter=';', quoting=csv.QUOTE_ALL, skipinitialspace=True)
@@ -24,18 +25,30 @@ def upload_file(request):
             default_storage.save('tmp/' + filename, ContentFile(data.read()))
             with open('tmp/' + filename, 'r+', encoding='utf-8') as f:
                 reader = csv.reader(f, dialect='myCSV')
+                i = 0
                 for row in reader:
-                    computer = row[0]
-                    filepath = row[1]
-                    filesize = row[2]
-                    ctime = row[3]
-                    rec = CompData()
-                    rec.compname = computer
-                    rec.filesize = filesize
-                    rec.added = time.strftime('%Y-%m-%d %H:%M:%S')
-                    rec.created = time.strftime('%Y-%m-%d %H:%M:%S')
-                    rec.fullname = filepath
-                    rec.save()
+                    if i > 1:
+                        computer = row[0]
+                        filepath = row[1]
+                        filesize = row[2]
+                        ctime = row[3]
+                        rec = CompData()
+                        rec.compname = computer
+                        try:
+                            rec.filesize = filesize
+                        except:
+                            pass
+                        rec.added = time.strftime('%Y-%m-%d %H:%M:%S')
+                        rec.created = time.strftime('%Y-%m-%d %H:%M:%S')
+                        rec.fullname = filepath
+                        rec.extension = Path(row[1]).suffix
+                        rec.folder = os.path.dirname(row[1])
+                        rec.disk = row[1][0]
+                        basename = os.path.basename(row[1])
+                        rec.filename = os.path.splitext(basename)[0]
+                        rec.save()
+                    i = i + 1
+
                     pass
             # rec = CompData()
             f.close()

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'upload.apps.UploadConfig',
     'compdata.apps.CompdataConfig',
+    'shpviewlist.apps.ShpviewlistConfig'
 ]
 
 MIDDLEWARE = [
