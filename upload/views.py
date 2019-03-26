@@ -7,9 +7,11 @@ import time
 import csv
 import os
 from pathlib import Path
+import logging
 
 
 csv.register_dialect('myCSV', delimiter=';', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+logger = logging.getLogger(__name__)
 
 
 def upload_file(request):
@@ -37,6 +39,7 @@ def upload_file(request):
                         try:
                             rec.filesize = filesize
                         except:
+                            logger.error('Wrong file size')
                             pass
                         rec.added = time.strftime('%Y-%m-%d %H:%M:%S')
                         rec.created = time.strftime('%Y-%m-%d %H:%M:%S')
