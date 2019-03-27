@@ -2,12 +2,32 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Stat</title>
 </head>
 <body>
-    <table cellpadding="0" cellspacing="0">
+    <table cellspacing="0" border="1">
         <tr>
+            <td style="font-weight: bold">CompName</td>
+            <td style="font-weight: bold">Filename</td>
+            <td style="font-weight: bold">.SHP</td>
+            <td style="font-weight: bold">.SHX</td>
+            <td style="font-weight: bold">.PRJ</td>
+            <td style="font-weight: bold">.DBF</td>
+            <td style="font-weight: bold">.SHP.XML</td>
+            <td style="font-weight: bold">SHP+SHX+PRJ+DBF Size</td>
         </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.compname }}</td>
+            <td>{{ item.filename }}</td>
+            <td>{{ item.shp }}</td>
+            <td>{{ item.shx }}</td>
+            <td>{{ item.prj }}</td>
+            <td>{{ item.dbf }}</td>
+            <td>{{ item.shpxml }}</td>
+            <td>{{ item.sum_good }}</td>
+        </tr>
+        {% endfor %}
     </table>
 </body>
 </html>

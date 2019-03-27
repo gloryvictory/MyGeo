@@ -8,6 +8,7 @@ import csv
 import os
 from pathlib import Path
 import logging
+from django.utils import timezone
 
 
 csv.register_dialect('myCSV', delimiter=';', quoting=csv.QUOTE_ALL, skipinitialspace=True)

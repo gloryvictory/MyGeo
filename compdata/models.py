@@ -11,3 +11,9 @@ class CompData(models.Model):
     filesize = models.BigIntegerField()
     created = models.DateTimeField()
     added = models.DateTimeField()
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['extension', ]),
+            models.Index(fields=['folder', 'extension', ]),
+        ]
