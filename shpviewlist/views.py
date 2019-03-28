@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from compdata.models import CompData
-from django.db.models import Q
+from hurry.filesize import size
+from hurry.filesize import alternative
 
 
 def shpviewlist(request):
@@ -66,7 +67,7 @@ def shpviewlist(request):
 
         tmp_data['compname'] = shp_file.compname
         tmp_data['filename'] = shp_file.filename
-        tmp_data['sum_good'] = shp_file.filesize + shx_size + prj_size + dbf_size + shpxml_size
+        tmp_data['sum_good'] = size(shp_file.filesize + shx_size + prj_size + dbf_size + shpxml_size, system=alternative)
         table_data.append(tmp_data)
         print(tmp_data)
 
