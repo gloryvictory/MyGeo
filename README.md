@@ -1,5 +1,6 @@
 # MyGeo
 Create and manage Metadata about Spatial Data on your network
+
 Лицензия: Программное обеспечение MyGeo
 MyGeo распространяется под GNU General Public License v2. Являясь ПО с открытым исходным кодом, MyGeo предоставляет пользователю следующие уровни свободы:
 1. использовать MyGeo для любых собственных целей;
